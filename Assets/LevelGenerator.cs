@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class LevelGenerator : MonoBehaviour
 {
 	[SerializeField] Floor tilePrefab;
-	[SerializeField] Transform basePrefab;
+	[SerializeField] Health basePrefab;
 	[SerializeField] Spawner spawnerPrefab;
 	[SerializeField] int width;
 	[SerializeField] int height;
@@ -34,9 +34,11 @@ public class LevelGenerator : MonoBehaviour
 			}
 		}
 
-		var basePosition = InstantiateAt(0, 0, basePrefab).transform.position;
+		var baseHealth = InstantiateAt(0, 0, basePrefab) as Health;
+		baseHealth.OnCurrentChange += () => Debug.Log("Base health: " + baseHealth.Current);
+		baseHealth.OnDie += () => Debug.Log("Game over!");
 		spawner = InstantiateAt(width - 1, height - 1, spawnerPrefab) as Spawner;
-		spawner.Init(basePosition);
+		spawner.Init(baseHealth);
 
 		NavMeshSurface.BuildNavMesh();
 	}

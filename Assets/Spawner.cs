@@ -9,10 +9,10 @@ public class Spawner : MonoBehaviour
 	[SerializeField] float radius;
 	[SerializeField] float period;
 
-	Vector3 target;
+	Health target;
 	List<Enemy> spawnedEnemies = new List<Enemy>();
 
-	public void Init(Vector3 target)
+	public void Init(Health target)
 	{
 		this.target = target;
 		StartCoroutine(Spawn());
