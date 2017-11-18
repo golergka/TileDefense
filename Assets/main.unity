@@ -183,11 +183,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 114035890044176020, guid: 5a93b0bd127c44b0e9cbd7840632a4e3,
     type: 2}
-  basePrefab: {fileID: 4182939384678932, guid: 5d93e00e9ba8d4653aeeb315cf6eb01d, type: 2}
+  turretPrefab: {fileID: 114256655675867900, guid: a4f64cd630bbf4a18add6bcc050ce05e,
+    type: 2}
+  basePrefab: {fileID: 114818939256171306, guid: 5d93e00e9ba8d4653aeeb315cf6eb01d,
+    type: 2}
   spawnerPrefab: {fileID: 114446630090207830, guid: cfade5be6d5ef47ac86bcff768db90d7,
     type: 2}
   width: 10
   height: 10
+  turretProbability: 0.07
 --- !u!1 &823471301
 GameObject:
   m_ObjectHideFlags: 0

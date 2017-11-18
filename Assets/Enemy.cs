@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
 		where T : Component, IDamageReceiver
 	{
 		targetTransform = target.transform;
-		DamageDealer.Init(target);
+		DamageDealer.Target = target;
 		RebuildPath();
 	}
 

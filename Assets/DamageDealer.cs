@@ -6,17 +6,21 @@ public class DamageDealer : MonoBehaviour
 	[SerializeField] int damageAmount; 
 
 	float damageStartTime;
-	IDamageReceiver target;
 
-	public void Init(IDamageReceiver target)
-	{
-		this.target = target;
-		damageStartTime = Time.time;
+	IDamageReceiver target;
+	public IDamageReceiver Target 
+	{ 
+		get { return target; }
+		set
+		{
+			target = value;
+			damageStartTime = Time.time;
+		}
 	}
 
 	void Update()
 	{
-		if (target == null) return;
+		if (Target == null) return;
 
 		var damageElapsedTime = Time.time - damageStartTime;
 		
@@ -26,7 +30,7 @@ public class DamageDealer : MonoBehaviour
 		var periodsPassed = Mathf.FloorToInt(damageElapsedTime / 
 				(float) damagePeriod);
 		damageStartTime += damagePeriod * periodsPassed;
-		target.ReceiveDamage(damageAmount * periodsPassed);
+		Target.ReceiveDamage(damageAmount * periodsPassed);
 	}
 
 	void OnEnable()

@@ -5,10 +5,12 @@ using UnityEngine.AI;
 public class LevelGenerator : MonoBehaviour
 {
 	[SerializeField] Floor tilePrefab;
+	[SerializeField] Turret turretPrefab;
 	[SerializeField] Health basePrefab;
 	[SerializeField] Spawner spawnerPrefab;
 	[SerializeField] int width;
 	[SerializeField] int height;
+	[SerializeField] float turretProbability;
 
 	const float TILE_SIZE = 1f;
 
@@ -29,8 +31,15 @@ public class LevelGenerator : MonoBehaviour
 		{
 			for(var y = 0; y < height; y++)
 			{
-				var tile = InstantiateAt(x, y, tilePrefab) as Floor;
-				tile.Init(RebuildNavMesh);
+				if (Random.value < turretProbability)
+				{
+					InstantiateAt(x, y, turretPrefab);
+				}
+				else
+				{
+					var tile = InstantiateAt(x, y, tilePrefab) as Floor;
+					tile.Init(RebuildNavMesh);
+				}
 			}
 		}
 
