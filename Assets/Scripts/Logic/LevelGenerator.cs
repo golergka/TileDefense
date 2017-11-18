@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(NavMeshSurface))]
 public class LevelGenerator : MonoBehaviour
@@ -45,11 +46,14 @@ public class LevelGenerator : MonoBehaviour
 	public Spawner Spawner { get; private set; }
 	public Health BaseHealth { get; private set; }
 
+	List<StageBuilder> turrets = new List<StageBuilder>();
+	public IEnumerable<StageBuilder> Turrets { get { return turrets; } }
+
 	#endregion
 
 	#region Public methods
 
-	public void Init()
+	public void Init(GoldWallet wallet)
 	{
 		for(var x = 0; x < width; x++)
 		{
@@ -57,7 +61,9 @@ public class LevelGenerator : MonoBehaviour
 			{
 				if (Random.value < turretProbability)
 				{
-					InstantiateAt(x, y, turretPrefab);
+					var turret = InstantiateAt(x, y, turretPrefab) as StageBuilder;
+					turret.Init(wallet);
+					turrets.Add(turret);
 				}
 				else
 				{

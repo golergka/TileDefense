@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class UIDaddy : MonoBehaviour
 {
-	[SerializeField] BaseHealth baseHealthUI;
+	[SerializeField] UIBaseHealth uiBaseHealth;
+	[SerializeField] UIGoldWallet uiGoldWallet;
 
-	public void Init(Health baseHealth)
+	public void Init(Health baseHealth, GoldWallet goldWallet)
 	{
-		baseHealthUI.Init(baseHealth);
+		uiBaseHealth.Init(baseHealth);
+		uiGoldWallet.Init(goldWallet);
 	}
 }

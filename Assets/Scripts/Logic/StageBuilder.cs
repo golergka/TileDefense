@@ -1,10 +1,13 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 public class StageBuilder : MonoBehaviour, IPointerClickHandler
 {
+	[SerializeField] int stageCostUpgrade;
+
 	private List<DamageDealer> stages = new List<DamageDealer>();
 
 	void Start()
@@ -34,6 +37,22 @@ public class StageBuilder : MonoBehaviour, IPointerClickHandler
 		}
 	}
 
+	int UpgradeCost
+	{
+		get
+		{
+			return (CurrentStage + 2) * stageCostUpgrade;
+		}
+	}
+
+	bool MaxStage
+	{
+		get
+		{
+			return CurrentStage >= stages.Count - 1;
+		}
+	}
+
 	void SetTarget(IDamageReceiver target)
 	{
 		foreach(var stage in stages)
@@ -42,11 +61,42 @@ public class StageBuilder : MonoBehaviour, IPointerClickHandler
 		}
 	}
 
+	private GoldWallet wallet;
+
+	public void Init(GoldWallet wallet)
+	{
+		this.wallet = wallet;
+	}
+
 	public void OnPointerClick(PointerEventData pointerEventData)
 	{
-		if (CurrentStage < stages.Count - 1)
+		if (MaxStage)
 		{
-			CurrentStage++;
+			OnUpgradeFailure(UpgradeFailureReason.MaxStageReached);
+			return;
 		}
+		if (wallet == null)
+		{
+			Debug.LogError("Trying to upgrade without a wallet reference!");
+			return;
+		}
+		if (!wallet.CanSpend(UpgradeCost))
+		{
+			OnUpgradeFailure(UpgradeFailureReason.NotEnoughGold);
+			return;
+		}
+
+		wallet.Spend(UpgradeCost);
+		CurrentStage++;
+		OnUpgradeSuccess();
 	}
+
+	public enum UpgradeFailureReason
+	{
+		MaxStageReached,
+		NotEnoughGold
+	}
+
+	public event Action OnUpgradeSuccess = delegate{};
+	public event Action<UpgradeFailureReason> OnUpgradeFailure = delegate{};
 }

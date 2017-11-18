@@ -27,6 +27,8 @@ public class Enemy : MonoBehaviour
 
 	#endregion
 
+	public int GoldReward;
+
 	Transform targetTransform;
 
 	public void Init<T>(T target)

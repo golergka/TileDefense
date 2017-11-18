@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Text))]
-public class BaseHealth : MonoBehaviour
+public class UIBaseHealth : MonoBehaviour
 {
 	private Text text;
 	private Text Text

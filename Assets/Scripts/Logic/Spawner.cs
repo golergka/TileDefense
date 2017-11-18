@@ -36,11 +36,14 @@ public class Spawner : MonoBehaviour
 			enemy.GetComponent<Health>().OnDie += delegate
 			{
 				spawnedEnemies.Remove(enemy);
+				OnEnemyDie(enemy);
 				Destroy(enemy.gameObject);
 			};
 			spawnedEnemies.Add(enemy);
 		}
 	}
+
+	public event System.Action<Enemy> OnEnemyDie = delegate{};
 
 	public void RebuildPaths()
 	{
