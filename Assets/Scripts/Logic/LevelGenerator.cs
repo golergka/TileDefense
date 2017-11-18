@@ -4,15 +4,30 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshSurface))]
 public class LevelGenerator : MonoBehaviour
 {
+	#region Prefabs
+
 	[SerializeField] Floor tilePrefab;
 	[SerializeField] StageBuilder turretPrefab;
 	[SerializeField] Health basePrefab;
 	[SerializeField] Spawner spawnerPrefab;
+
+	#endregion
+
+	#region Level settings
+
 	[SerializeField] int width;
 	[SerializeField] int height;
 	[SerializeField] float turretProbability;
 
+	#endregion
+
+	#region Constants
+
 	const float TILE_SIZE = 1f;
+
+	#endregion
+
+	#region Components
 
 	private NavMeshSurface navMeshSurface;
 	private NavMeshSurface NavMeshSurface
@@ -23,9 +38,18 @@ public class LevelGenerator : MonoBehaviour
 		}
 	}
 
-	private Spawner spawner;
+	#endregion
 
-	void Start()
+	#region Created objects
+
+	public Spawner Spawner { get; private set; }
+	public Health BaseHealth { get; private set; }
+
+	#endregion
+
+	#region Public methods
+
+	public void Init()
 	{
 		for(var x = 0; x < width; x++)
 		{
@@ -43,19 +67,21 @@ public class LevelGenerator : MonoBehaviour
 			}
 		}
 
-		var baseHealth = InstantiateAt(0, 0, basePrefab) as Health;
-		baseHealth.OnCurrentChange += () => Debug.Log("Base health: " + baseHealth.Current);
-		baseHealth.OnDie += () => Debug.Log("Game over!");
-		spawner = InstantiateAt(width - 1, height - 1, spawnerPrefab) as Spawner;
-		spawner.Init(baseHealth);
+		BaseHealth = InstantiateAt(0, 0, basePrefab) as Health;
+		Spawner = InstantiateAt(width - 1, height - 1, spawnerPrefab) as Spawner;
+		Spawner.Init(BaseHealth);
 
 		NavMeshSurface.BuildNavMesh();
 	}
 
+	#endregion
+
+	#region Private helper methods
+
 	private void RebuildNavMesh()
 	{
 		NavMeshSurface.BuildNavMesh();
-		spawner.RebuildPaths();
+		Spawner.RebuildPaths();
 	}
 
 	private Component InstantiateAt(int x, int y, Component prefab)
@@ -78,4 +104,6 @@ public class LevelGenerator : MonoBehaviour
 		var center = transform.position + size * 0.5f;
 		Gizmos.DrawWireCube(center, size);
 	}
+
+	#endregion
 }
