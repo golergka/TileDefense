@@ -33,6 +33,11 @@ public class Spawner : MonoBehaviour
 			var pos = new Vector3(posXY.x, 0f, posXY.y);
 			var enemy = Instantiate(spawned, transform.position + pos, Quaternion.Euler(0f, Random.value * 360f, 0f)) as Enemy;
 			enemy.Init(target);
+			enemy.GetComponent<Health>().OnDie += delegate
+			{
+				spawnedEnemies.Remove(enemy);
+				Destroy(enemy.gameObject);
+			};
 			spawnedEnemies.Add(enemy);
 		}
 	}

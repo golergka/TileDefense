@@ -38,4 +38,13 @@ public class DamageDealer : MonoBehaviour
 		damageStartTime = Time.time;
 	}
 
+	void OnDrawGizmosSelected()
+	{
+		var targetComponent = target as Component;
+		if (targetComponent != null)
+		{
+			Gizmos.color = Color.red;
+			Gizmos.DrawLine(transform.position, targetComponent.transform.position);
+		}
+	}
 }

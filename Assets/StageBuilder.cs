@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Turret : MonoBehaviour, IPointerClickHandler
+public class StageBuilder : MonoBehaviour, IPointerClickHandler
 {
 	private List<DamageDealer> stages = new List<DamageDealer>();
 

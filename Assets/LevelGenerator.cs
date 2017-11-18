@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class LevelGenerator : MonoBehaviour
 {
 	[SerializeField] Floor tilePrefab;
-	[SerializeField] Turret turretPrefab;
+	[SerializeField] StageBuilder turretPrefab;
 	[SerializeField] Health basePrefab;
 	[SerializeField] Spawner spawnerPrefab;
 	[SerializeField] int width;
