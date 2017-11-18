@@ -53,4 +53,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawned: {fileID: 114114535426370258, guid: 6cd0f7ffb826846caa9c53c1250ed58d, type: 2}
   radius: 0.5
-  period: 2
+  period: 4

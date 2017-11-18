@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6dd0a1848d14eb88553636a1ec4970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max: 20
+  max: 5
 --- !u!114 &114114535426370258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11a5829f00166471da0cfb73741d7a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GoldReward: 10
 --- !u!114 &114928815232221936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -190,7 +191,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.2
-  m_Speed: 3
+  m_Speed: 1.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
