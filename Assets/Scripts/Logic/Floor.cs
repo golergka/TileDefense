@@ -5,21 +5,36 @@ using System;
 
 public class Floor : MonoBehaviour, IPointerClickHandler
 {
+	public event Action SnakeActivated = delegate{};
 
-	private Action rebuildNav;
 	private Transform sourceTransform;
 	private Transform targetTransform;
+	private Action rebuildNavMesh;
 
-	public void Init(Action rebuildNav, Transform sourceTransform, Transform targetTransform)
+	[SerializeField] Color activeColor;
+	[SerializeField] Color passiveColor;
+
+	public void Init(Action rebuildNavMesh, Transform sourceTransform, Transform targetTransform)
 	{
-		this.rebuildNav = rebuildNav;
+		this.rebuildNavMesh = rebuildNavMesh;
 		this.sourceTransform = sourceTransform;
 		this.targetTransform = targetTransform;
+		DeactivateSnake();
 	}
 
 	private NavMeshModifier modifier;
 
-	public void OnPointerClick(PointerEventData pointerEventData)
+	public void DeactivateSnake()
+	{
+		if (modifier != null)
+		{
+			modifier.enabled = false;
+			rebuildNavMesh();
+		}
+		GetComponent<Renderer>().material.color = passiveColor;
+	}
+
+	public void TryActivateSnake()
 	{
 		if (modifier == null)
 		{
@@ -28,7 +43,8 @@ public class Floor : MonoBehaviour, IPointerClickHandler
 		modifier.overrideArea = true;
 		modifier.area = (int) NavArea.TestingBuilding;
 		modifier.enabled = true;
-		rebuildNav();
+
+		rebuildNavMesh();
 		
 		var path = new NavMeshPath();
 		var mask = (int) (NavArea.Walkable | NavArea.TestingBuilding);
@@ -36,13 +52,19 @@ public class Floor : MonoBehaviour, IPointerClickHandler
 		if (NavMesh.CalculatePath(sourceTransform.position, targetTransform.position, mask, path) && path.status == NavMeshPathStatus.PathComplete)
 		{
 			modifier.area = (int) NavArea.NonWalkable;
-			GetComponent<Renderer>().material.color = Color.red;
+			GetComponent<Renderer>().material.color = activeColor;
 		}
 		else
 		{
 			modifier.enabled = false;
 		}
 
-		rebuildNav();
+		rebuildNavMesh();
+		SnakeActivated();
+	}
+
+	public void OnPointerClick(PointerEventData pointerEventData)
+	{
+		TryActivateSnake();
 	}
 }

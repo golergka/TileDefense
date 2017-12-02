@@ -19,6 +19,7 @@ public class LevelGenerator : MonoBehaviour
 	[SerializeField] int width;
 	[SerializeField] int height;
 	[SerializeField] float turretProbability;
+	[SerializeField] int initialSnakeLength;
 
 	#endregion
 
@@ -59,6 +60,9 @@ public class LevelGenerator : MonoBehaviour
 		Spawner = InstantiateAt(width - 1, height - 1, spawnerPrefab) as Spawner;
 		Spawner.Init(BaseHealth);
 
+		var snakeController = new SnakeController();
+		snakeController.SnakeLength = initialSnakeLength;
+
 		for(var x = 0; x < width; x++)
 		{
 			for(var y = 0; y < height; y++)
@@ -73,10 +77,10 @@ public class LevelGenerator : MonoBehaviour
 				{
 					var tile = InstantiateAt(x, y, tilePrefab) as Floor;
 					tile.Init(RebuildNavMesh, Spawner.transform, BaseHealth.transform);
+					snakeController.RegisterFloor(tile);
 				}
 			}
 		}
-
 
 		NavMeshSurface.BuildNavMesh();
 	}
