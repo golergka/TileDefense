@@ -62,7 +62,11 @@ public class EnemyTargeter : MonoBehaviour
 		Gizmos.color = Color.white;
 		foreach(var target in possibleTargets)
 		{
-			Gizmos.DrawLine(transform.position, (target as Component).transform.position);
+			var comp = target as Component;
+			if (comp != null)
+			{
+				Gizmos.DrawLine(transform.position, comp.transform.position);
+			}
 		}
 	}
 }
