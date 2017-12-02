@@ -22,6 +22,8 @@ public class Health : MonoBehaviour, IDamageReceiver
 		{
 			throw new ArgumentException("Negative damage amount" + amount);
 		}
+		
+		var old = Current;
 
 		Current -= amount;
 
@@ -33,7 +35,7 @@ public class Health : MonoBehaviour, IDamageReceiver
 			dead = true;
 		}
 
-		OnCurrentChange();
+		OnCurrentChange(Current - old);
 
 		if (dead)
 		{
@@ -41,6 +43,6 @@ public class Health : MonoBehaviour, IDamageReceiver
 		}
 	}
 
-	public event Action OnCurrentChange = delegate{};
+	public event Action<int> OnCurrentChange = delegate{};
 	public event Action OnDie = delegate{};
 }

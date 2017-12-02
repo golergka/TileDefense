@@ -18,7 +18,7 @@ public class UIBaseHealth : MonoBehaviour
 	public void Init(Health health)
 	{
 		this.health = health;
-		health.OnCurrentChange += UpdateText;
+		health.OnCurrentChange += _ => UpdateText();
 	}
 
 	void UpdateText()

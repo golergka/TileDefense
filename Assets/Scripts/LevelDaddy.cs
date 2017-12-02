@@ -12,7 +12,7 @@ public class LevelDaddy : MonoBehaviour
 		generator.Init(goldWallet);
 
 		generator.BaseHealth.OnCurrentChange += 
-			() => Debug.Log("Base health: " + generator.BaseHealth.Current);
+			change => Debug.Log("Base health: " + generator.BaseHealth.Current);
 		generator.BaseHealth.OnDie += 
 			() => Debug.Log("Game over!");
 

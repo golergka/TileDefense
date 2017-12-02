@@ -42,8 +42,11 @@ public class Enemy : MonoBehaviour
 
 	void OnDrawGizmosSelected()
 	{
-		Gizmos.color = Color.green;
-		Gizmos.DrawLine(transform.position, targetTransform.position);
+		if (targetTransform != null)
+		{
+			Gizmos.color = Color.green;
+			Gizmos.DrawLine(transform.position, targetTransform.position);
+		}
 	}
 
 	#region States
