@@ -19,7 +19,11 @@ public class PeriodicDamager : Damager
 
 	void Update()
 	{
-		if (Target == null) return;
+		if (Target == null || (Target as Component) == null)
+		{
+			Target = null;
+			return;
+		}
 
 		var damageElapsedTime = Time.time - damageStartTime;
 		
