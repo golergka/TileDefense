@@ -55,6 +55,10 @@ public class LevelGenerator : MonoBehaviour
 
 	public void Init(GoldWallet wallet)
 	{
+		BaseHealth = InstantiateAt(0, 0, basePrefab) as Health;
+		Spawner = InstantiateAt(width - 1, height - 1, spawnerPrefab) as Spawner;
+		Spawner.Init(BaseHealth);
+
 		for(var x = 0; x < width; x++)
 		{
 			for(var y = 0; y < height; y++)
@@ -68,14 +72,11 @@ public class LevelGenerator : MonoBehaviour
 				else
 				{
 					var tile = InstantiateAt(x, y, tilePrefab) as Floor;
-					tile.Init(RebuildNavMesh);
+					tile.Init(RebuildNavMesh, Spawner.transform, BaseHealth.transform);
 				}
 			}
 		}
 
-		BaseHealth = InstantiateAt(0, 0, basePrefab) as Health;
-		Spawner = InstantiateAt(width - 1, height - 1, spawnerPrefab) as Spawner;
-		Spawner.Init(BaseHealth);
 
 		NavMeshSurface.BuildNavMesh();
 	}
