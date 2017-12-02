@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4069128298274682}
-  - component: {fileID: 114072759752036640}
+  - component: {fileID: 114710053813435122}
   m_Layer: 0
   m_Name: HitHolder
   m_TagString: Untagged
@@ -115,18 +115,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1048998926429876}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114072759752036640
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1562161435250970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37fb8d54e5b3e48cdb502f5a01da6461, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 4149180120012992, guid: b6889e8818170c8478e5824800c73f01, type: 2}
 --- !u!114 &114499744260625010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -138,8 +126,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b651b2c24b126492fac3732f68aab230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitAnimationHolder: {fileID: 114072759752036640}
-  hitDuration: 2
+  hitAnimationHolder: {fileID: 114710053813435122}
+--- !u!114 &114710053813435122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1562161435250970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f47417e369ea41648c5c8251352e1ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 198101021485556472, guid: b6889e8818170c8478e5824800c73f01, type: 2}
 --- !u!114 &114818939256171306
 MonoBehaviour:
   m_ObjectHideFlags: 1

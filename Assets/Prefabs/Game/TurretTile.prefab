@@ -1135,8 +1135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4252a64e99734221b8fd4a4e5bf170e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 10
-  damagePeriod: 1.5
+  damageAmount: 1
+  damagePeriod: 0.15
 --- !u!114 &114161489383427180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1170,8 +1170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4252a64e99734221b8fd4a4e5bf170e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 3
-  damagePeriod: 1.5
+  damageAmount: 1
+  damagePeriod: 0.5
 --- !u!114 &114494538685144880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1183,8 +1183,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4252a64e99734221b8fd4a4e5bf170e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 6
-  damagePeriod: 1.5
+  damageAmount: 1
+  damagePeriod: 0.25
 --- !u!114 &114641704377285902
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1234,7 +1234,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1.7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135030810897040250
 SphereCollider:
@@ -1246,7 +1246,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 1.7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135061934362996278
 SphereCollider:
@@ -1330,7 +1330,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.3
+  m_Radius: 1.7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135626048921958792
 SphereCollider:
