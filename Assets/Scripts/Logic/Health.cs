@@ -34,6 +34,7 @@ public class Health : MonoBehaviour, IDamageReceiver
 		}
 
 		OnCurrentChange();
+
 		if (dead)
 		{
 			OnDie();
