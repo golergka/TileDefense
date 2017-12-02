@@ -192,6 +192,7 @@ MonoBehaviour:
   width: 10
   height: 10
   turretProbability: 0.07
+  initialSnakeLength: 4
 --- !u!114 &707477047 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114346935143441220, guid: 6f89b16bdf2df4da9b18a257973b5362,
@@ -270,7 +271,7 @@ Prefab:
     - target: {fileID: 224061638745741206, guid: 6f89b16bdf2df4da9b18a257973b5362,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 969
+      value: 1275
       objectReference: {fileID: 0}
     - target: {fileID: 224061638745741206, guid: 6f89b16bdf2df4da9b18a257973b5362,
         type: 2}
@@ -360,7 +361,7 @@ Prefab:
     - target: {fileID: 224463627803007118, guid: 6f89b16bdf2df4da9b18a257973b5362,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 885
+      value: 1191
       objectReference: {fileID: 0}
     - target: {fileID: 224542810488685620, guid: 6f89b16bdf2df4da9b18a257973b5362,
         type: 2}
@@ -375,7 +376,7 @@ Prefab:
     - target: {fileID: 224236499243897130, guid: 6f89b16bdf2df4da9b18a257973b5362,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 224466147268578438, guid: 6f89b16bdf2df4da9b18a257973b5362,
         type: 2}
@@ -390,12 +391,12 @@ Prefab:
     - target: {fileID: 224962796723967006, guid: 6f89b16bdf2df4da9b18a257973b5362,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: -821
+      value: -1127
       objectReference: {fileID: 0}
     - target: {fileID: 224962796723967006, guid: 6f89b16bdf2df4da9b18a257973b5362,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 495
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224288629858362826, guid: 6f89b16bdf2df4da9b18a257973b5362,
         type: 2}
