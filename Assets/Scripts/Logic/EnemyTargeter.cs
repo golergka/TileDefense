@@ -1,15 +1,15 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(DamageDealer))]
+[RequireComponent(typeof(PeriodicDamager))]
 public class EnemyTargeter : MonoBehaviour
 {
-	private DamageDealer damageDealer;
-	private DamageDealer DamageDealer
+	private PeriodicDamager damageDealer;
+	private PeriodicDamager PeriodicDamager
 	{
 		get
 		{
-			return damageDealer ?? (damageDealer = GetComponent<DamageDealer>());
+			return damageDealer ?? (damageDealer = GetComponent<PeriodicDamager>());
 		}
 	}
 
@@ -17,8 +17,8 @@ public class EnemyTargeter : MonoBehaviour
 
 	void TrySwitchTarget()
 	{
-		if (DamageDealer.Target != null &&
-			possibleTargets.Contains(DamageDealer.Target))
+		if (PeriodicDamager.Target != null &&
+			possibleTargets.Contains(PeriodicDamager.Target))
 		{
 			return;
 		}
@@ -29,7 +29,7 @@ public class EnemyTargeter : MonoBehaviour
 		}
 
 		var index = Random.Range(0, possibleTargets.Count);
-		DamageDealer.Target = possibleTargets[index];
+		PeriodicDamager.Target = possibleTargets[index];
 	}
 
 	void OnTriggerEnter(Collider other)

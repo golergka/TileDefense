@@ -1,9 +1,8 @@
 using UnityEngine;
 
-public class DamageDealer : MonoBehaviour
+public class PeriodicDamager : Damager
 {
 	[SerializeField] float damagePeriod;
-	[SerializeField] int damageAmount; 
 
 	float damageStartTime;
 
@@ -29,8 +28,11 @@ public class DamageDealer : MonoBehaviour
 		 */
 		var periodsPassed = Mathf.FloorToInt(damageElapsedTime / 
 				(float) damagePeriod);
+
 		damageStartTime += damagePeriod * periodsPassed;
-		Target.ReceiveDamage(damageAmount * periodsPassed);
+
+		for(int i = 0; i < periodsPassed; i++)
+			DamageInstantly(Target);
 	}
 
 	void OnEnable()

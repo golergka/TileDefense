@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-[RequireComponent(typeof(DamageDealer))]
+[RequireComponent(typeof(PeriodicDamager))]
 public class Enemy : MonoBehaviour
 {
 	#region Components
@@ -16,12 +16,12 @@ public class Enemy : MonoBehaviour
 		}
 	}
 
-	private DamageDealer damageDealer;
-	private DamageDealer DamageDealer
+	private PeriodicDamager damageDealer;
+	private PeriodicDamager PeriodicDamager
 	{
 		get
 		{
-			return damageDealer ?? (damageDealer = GetComponent<DamageDealer>());
+			return damageDealer ?? (damageDealer = GetComponent<PeriodicDamager>());
 		}
 	}
 
@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
 		where T : Component, IDamageReceiver
 	{
 		targetTransform = target.transform;
-		DamageDealer.Target = target;
+		PeriodicDamager.Target = target;
 		RebuildPath();
 	}
 
@@ -55,6 +55,6 @@ public class Enemy : MonoBehaviour
 		var targetDelta = targetTransform.position - transform.position;
 		var closeEnough = targetDelta.sqrMagnitude <= Mathf.Pow(NavMeshAgent.stoppingDistance, 2f);
 
-		DamageDealer.enabled = closeEnough;
+		PeriodicDamager.enabled = closeEnough;
 	}
 }

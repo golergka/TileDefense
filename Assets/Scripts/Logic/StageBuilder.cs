@@ -8,13 +8,13 @@ public class StageBuilder : MonoBehaviour, IPointerClickHandler
 {
 	[SerializeField] int stageCostUpgrade;
 
-	private List<DamageDealer> stages = new List<DamageDealer>();
+	private List<PeriodicDamager> stages = new List<PeriodicDamager>();
 
 	void Start()
 	{
 		foreach(Transform child in transform)
 		{
-			var stage = child.GetComponent<DamageDealer>();
+			var stage = child.GetComponent<PeriodicDamager>();
 			if (stage != null)
 			{
 				stages.Add(stage);

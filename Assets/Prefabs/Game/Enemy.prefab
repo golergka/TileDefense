@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 54618842045880312}
   - component: {fileID: 114048273705388954}
   - component: {fileID: 136825106536174248}
+  - component: {fileID: 114337802278601594}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -156,6 +157,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GoldReward: 10
+--- !u!114 &114337802278601594
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1097440217646648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 108
+    i1: 208
+    i2: 247
+    i3: 255
+    i4: 184
+    i5: 38
+    i6: 132
+    i7: 108
+    i8: 170
+    i9: 156
+    i10: 83
+    i11: 193
+    i12: 37
+    i13: 14
+    i14: 213
+    i15: 141
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114928815232221936
 MonoBehaviour:
   m_ObjectHideFlags: 1
