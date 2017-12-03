@@ -176,6 +176,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitAnimationHolder: {fileID: 114998189670225878}
+  deathAnimationPrefab: {fileID: 1779881074926358, guid: 7fdda3c6252719d43af5893ff316daa6,
+    type: 2}
 --- !u!114 &114048273705388954
 MonoBehaviour:
   m_ObjectHideFlags: 1
