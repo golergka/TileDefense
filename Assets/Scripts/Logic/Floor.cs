@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
@@ -11,8 +12,12 @@ public class Floor : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerE
 	private Transform targetTransform;
 	private Action rebuildNavMesh;
 
+	private float lastCancelTime = float.NegativeInfinity;
+
 	[SerializeField] Color activeColor;
 	[SerializeField] Color passiveColor;
+	[SerializeField] SpriteRenderer cancelIcon;
+	[SerializeField] Renderer floorRenderer;
 
 	public void Init(Action rebuildNavMesh, Transform sourceTransform, Transform targetTransform)
 	{
@@ -31,7 +36,7 @@ public class Floor : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerE
 			modifier.enabled = false;
 			rebuildNavMesh();
 		}
-		GetComponent<Renderer>().material.color = passiveColor;
+		floorRenderer.material.color = passiveColor;
 	}
 
 	public void TryActivateSnake()
@@ -55,15 +60,28 @@ public class Floor : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerE
 		if (NavMesh.CalculatePath(sourceTransform.position, targetTransform.position, mask, path) && path.status == NavMeshPathStatus.PathComplete)
 		{
 			modifier.area = (int) NavArea.NonWalkable;
-			GetComponent<Renderer>().material.color = activeColor;
+			floorRenderer.material.color = activeColor;
 			SnakeActivated();
 		}
 		else
 		{
 			modifier.enabled = false;
+			lastCancelTime = Time.time;
 		}
 
 		rebuildNavMesh();
+	}
+
+	const float CANCEL_ICON_STAY = 0.8f;
+	const float CANCEL_ICON_FADE = 0.2f;
+
+	void Update()
+	{
+		var cancelTime = Time.time - lastCancelTime;
+		var alpha = Mathf.Clamp01(1f - ((cancelTime - CANCEL_ICON_STAY) / CANCEL_ICON_FADE));
+		var col = cancelIcon.color;
+		col.a = alpha;
+		cancelIcon.color = col;
 	}
 
 	public void OnPointerDown(PointerEventData pointerEventData)
