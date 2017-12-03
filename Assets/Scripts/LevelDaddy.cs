@@ -18,6 +18,8 @@ public class LevelDaddy : MonoBehaviour
 
 		generator.Spawner.OnEnemyDie +=
 			enemy => goldWallet.Add(enemy.GoldReward);
+		generator.Spawner.OnEnemySpawn +=
+			enemy => uiDaddy.RegisterHealth(enemy.GetComponent<Health>());
 
 		foreach(var turret in generator.Turrets)
 		{

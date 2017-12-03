@@ -40,9 +40,11 @@ public class Spawner : MonoBehaviour
 				Destroy(enemy.gameObject);
 			};
 			spawnedEnemies.Add(enemy);
+			OnEnemySpawn(enemy);
 		}
 	}
 
+	public event System.Action<Enemy> OnEnemySpawn = delegate{};
 	public event System.Action<Enemy> OnEnemyDie = delegate{};
 
 	public void RebuildPaths()
