@@ -4,7 +4,7 @@ public class Damager : MonoBehaviour
 {
 	[SerializeField] int damageAmount; 
 
-	public void DamageInstantly(IDamageReceiver target)
+	public void DamageInstantly(Health target)
 	{
 		target.ReceiveDamage(damageAmount);
 	}

@@ -6,10 +6,11 @@ public class PeriodicDamager : Damager
 
 	float damageStartTime;
 
-	IDamageReceiver target;
-	public IDamageReceiver Target 
+	Health target;
+	public Health Target 
 	{ 
 		get { return target; }
+
 		set
 		{
 			target = value;
@@ -19,9 +20,8 @@ public class PeriodicDamager : Damager
 
 	void Update()
 	{
-		if (Target == null || (Target as Component) == null)
+		if (Target == null)
 		{
-			Target = null;
 			return;
 		}
 
@@ -46,11 +46,10 @@ public class PeriodicDamager : Damager
 
 	void OnDrawGizmosSelected()
 	{
-		var targetComponent = target as Component;
-		if (targetComponent != null)
+		if (target != null)
 		{
 			Gizmos.color = Color.red;
-			Gizmos.DrawLine(transform.position, targetComponent.transform.position);
+			Gizmos.DrawLine(transform.position, target.transform.position);
 		}
 	}
 }

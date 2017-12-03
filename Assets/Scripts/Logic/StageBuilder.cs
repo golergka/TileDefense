@@ -53,14 +53,6 @@ public class StageBuilder : MonoBehaviour, IPointerClickHandler
 		}
 	}
 
-	void SetTarget(IDamageReceiver target)
-	{
-		foreach(var stage in stages)
-		{
-			stage.Target = target;
-		}
-	}
-
 	private GoldWallet wallet;
 
 	public void Init(GoldWallet wallet)

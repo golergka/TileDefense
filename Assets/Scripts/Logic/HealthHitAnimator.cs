@@ -4,6 +4,7 @@ using UnityEngine;
 public class HealthHitAnimator : MonoBehaviour
 {
 	[SerializeField] ParticleSystemHolder hitAnimationHolder;
+	[SerializeField] GameObject deathAnimationPrefab;
 
 	void Start()
 	{
@@ -12,6 +13,10 @@ public class HealthHitAnimator : MonoBehaviour
 		{
 			var emit = -Mathf.Min(change, 0);
 			hitAnimationHolder.Instance.Emit(emit);
+		};
+		health.OnDie += delegate
+		{
+			Instantiate(deathAnimationPrefab, transform.position, transform.rotation);
 		};
 	}
 

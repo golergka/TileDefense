@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class Health : MonoBehaviour, IDamageReceiver
+public class Health : MonoBehaviour
 {
 	[SerializeField] int max;
 

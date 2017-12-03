@@ -29,11 +29,10 @@ public class Enemy : MonoBehaviour
 
 	public int GoldReward;
 
-	IDamageReceiver target;
+	Health target;
 	Transform targetTransform;
 
-	public void Init<T>(T target)
-		where T : Component, IDamageReceiver
+	public void Init(Health target)
 	{
 		this.target = target;
 		targetTransform = target.transform;

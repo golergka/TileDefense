@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 [RequireComponent(typeof(PeriodicDamager))]
 public class EnemyTargeter : MonoBehaviour
@@ -13,7 +14,7 @@ public class EnemyTargeter : MonoBehaviour
 		}
 	}
 
-	List<IDamageReceiver> possibleTargets = new List<IDamageReceiver>();
+	List<Health> possibleTargets = new List<Health>();
 
 	void TrySwitchTarget()
 	{
@@ -28,15 +29,18 @@ public class EnemyTargeter : MonoBehaviour
 			return;
 		}
 
+		possibleTargets = possibleTargets.Where(p => p != null).ToList();
+
 		var index = Random.Range(0, possibleTargets.Count);
 		PeriodicDamager.Target = possibleTargets[index];
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
-		var enemy = other.GetComponent<IDamageReceiver>();
+		var enemy = other.GetComponent<Health>();
 		if (enemy != null && IsPossibleTarget(other))
 		{
+			Debug.DrawLine(transform.position, other.transform.position, Color.green, 1f);
 			possibleTargets.Add(enemy);
 		}
 		TrySwitchTarget();
@@ -44,9 +48,10 @@ public class EnemyTargeter : MonoBehaviour
 
 	void OnTriggerExit(Collider other)
 	{
-		var enemy = other.GetComponent<IDamageReceiver>();
+		var enemy = other.GetComponent<Health>();
 		if (enemy != null && possibleTargets.Contains(enemy))
 		{
+			Debug.DrawLine(transform.position, other.transform.position, Color.blue, 1f);
 			possibleTargets.Remove(enemy);
 		}
 		TrySwitchTarget();
@@ -62,10 +67,9 @@ public class EnemyTargeter : MonoBehaviour
 		Gizmos.color = Color.white;
 		foreach(var target in possibleTargets)
 		{
-			var comp = target as Component;
-			if (comp != null)
+			if (target != null)
 			{
-				Gizmos.DrawLine(transform.position, comp.transform.position);
+				Gizmos.DrawLine(transform.position, target.transform.position);
 			}
 		}
 	}
